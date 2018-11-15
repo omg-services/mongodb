@@ -1,0 +1,72 @@
+omg: 1
+lifecycle:
+  startup:
+    command: ["python", "/app/app.py"]
+actions:
+  find:
+    http:
+      path: /find
+      method: post
+      port: 8000
+    arguments: &find_args
+      db:
+        type: string
+        required: true
+        in: requestBody
+      coll:
+        type: string
+        required: true
+        in: requestBody
+      query:
+        type: map
+        required: true
+        in: requestBody
+      sort:
+        type: map
+        in: requestBody
+      fields:
+        type: map
+        in: requestBody
+    output:
+      type: list
+      contentType: application/json
+  find_one:
+    http:
+      path: /find_one
+      method: post
+      port: 8000
+    arguments:
+      <<: *find_args
+    output:
+      type: map
+      contentType: application/json
+  insert:
+    http:
+      path: /insert
+      port: 8000
+      method: post
+    arguments:
+      db:
+        type: string
+        required: true
+        in: requestBody
+      coll:
+        type: string
+        required: true
+        in: requestBody
+      doc:
+        type: map
+        required: true
+        in: requestBody
+    output:
+      type: object
+      contentType: application/json
+      properties:
+        _id:
+          type: any
+environment:
+  MONGODB_URI:
+    help: |
+      The MongoDB URI to be used in the connection.
+      Defaults to mongodb://localhost:27017/.
+    type: string
