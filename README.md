@@ -14,7 +14,7 @@ result = mongodb find_one db: "test" coll: "my_coll" query: {}
 ```
 
 ### TODOs
-This is a WIP in progress service, and as such, only a few APIs from the MongoDB SDK have
+This is a WIP service, and as such, only a few APIs from the MongoDB SDK have
 been exposed.
 
 PRs are welcome.
