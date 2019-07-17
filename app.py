@@ -79,7 +79,7 @@ if __name__ == '__main__':
     handler = Handler()
     handler.app.add_url_rule('/find', 'find', handler.find,
                              methods=['post'])
-    handler.app.add_url_rule('/find_one', 'find_one', handler.find_one,
+    handler.app.add_url_rule('/findOne', 'findOne', handler.find_one,
                              methods=['post'])
     handler.app.add_url_rule('/insert', 'insert',
                              handler.insert, methods=['post'])
