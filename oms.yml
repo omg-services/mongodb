@@ -1,34 +1,40 @@
-omg: 1
-lifecycle:
-  startup:
-    command: ["python", "/app/app.py"]
+oms: 1
 info:
   version: 1.0.0
   title: MongoDB
   description: This is a mongodb service
+  contact:
+    name: Open Microservices
+    url: 'https://openmicroservices.org'
+    email: core@openmicroservices.org
+lifecycle:
+  startup:
+    command:
+      - python
+      - /app/app.py
 actions:
   find:
     http:
       path: /find
       method: post
       port: 8000
-    arguments: &find_args
-      db:
+    arguments:
+      db: &ref_0
         type: string
         required: true
         in: requestBody
-      coll:
+      coll: &ref_1
         type: string
         required: true
         in: requestBody
-      query:
+      query: &ref_2
         type: map
         required: true
         in: requestBody
-      sort:
+      sort: &ref_3
         type: map
         in: requestBody
-      fields:
+      fields: &ref_4
         type: map
         in: requestBody
     output:
@@ -40,7 +46,11 @@ actions:
       method: post
       port: 8000
     arguments:
-      <<: *find_args
+      db: *ref_0
+      coll: *ref_1
+      query: *ref_2
+      sort: *ref_3
+      fields: *ref_4
     output:
       type: map
       contentType: application/json
