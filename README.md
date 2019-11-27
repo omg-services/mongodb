@@ -1,53 +1,113 @@
-# _MongoDB_ OMG Microservice
+# _MongoDB_ Open Microservice
 
-[![Open Microservice Guide](https://img.shields.io/badge/OMG%20Enabled-👍-green.svg?)](https://microservice.guide)
+> This is a mongodb service
 
-This service is a wrapper around the official Python SDK for MongoDB.
+[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-## Direct usage in [Storyscript](https://storyscript.io/):
+## Introduction
 
-```coffee
-result = mongodb insert db: "test" coll: "my_coll" doc: {"foo": "bar"}
-# Do something with result._id
+This project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable "microservices" that expose the events, actions, and APIs inside containerized software.
 
-# You can also specify the arguments sort and fields (projection) below.
-result = mongodb find db: "test" coll: "my_coll" query: {}
-result = mongodb find_one db: "test" coll: "my_coll" query: {}
+## Getting Started
+
+The `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!
+
+See the [oms-cli](https://github.com/microservices/oms) project to learn more!
+
+### Installation
+
+```
+npm install -g @microservices/oms
 ```
 
-Curious to [learn more](https://docs.storyscript.io/)?
+## Usage
 
-✨🍰✨
+### Open Microservices CLI Usage
 
-### TODOs
-This is a WIP service, and as such, only a few APIs from the MongoDB SDK have
-been exposed.
+Once you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:
 
-PRs are welcome.
+#### Actions
 
-The following APIs are yet to be implemented:
-1. Update
-2. Upsert
-3. A string cursor implementation
-4. Find - limit
-5. And much more
+##### find
 
-## Usage with [OMG CLI](https://www.npmjs.com/package/omg)
+> 
+##### Action Arguments
 
-##### Find
-```shell
-$ omg run find -a db=<DATABASE> -a coll=<COLUMN> -a query=<QUERY> -a sort=<SORT> -a fields=<FIELDS> -e MONGODB_URI=<MONGODB_URI>
+| Argument Name | Type | Required | Default | Description |
+|:------------- |:---- |:-------- |:--------|:----------- |
+| db | `string` | `true` | None | No description provided. |
+| coll | `string` | `true` | None | No description provided. |
+| query | `map` | `true` | None | No description provided. |
+| sort | `map` | `false` | None | No description provided. |
+| fields | `map` | `false` | None | No description provided. |
+| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |
+
+``` shell
+oms run find \ 
+    -a db='*****' \ 
+    -a coll='*****' \ 
+    -a query='*****' \ 
+    -a sort='*****' \ 
+    -a fields='*****' \ 
+    -e MONGODB_URI=$MONGODB_URI
 ```
-##### FindOne
-```shell
-$ omg run findOne -a db=<DATABASE> -a coll=<COLUMN> -a query=<QUERY> -a sort=<SORT> -a fields=<FIELDS> -e MONGODB_URI=<MONGODB_URI>
-```
-##### Insert
-```shell
-$ omg run find -a db=<DATABASE> -a coll=<COLUMN> -a doc=<DOC> -e MONGODB_URI=<MONGODB_URI>
+
+##### findOne
+
+> 
+##### Action Arguments
+
+| Argument Name | Type | Required | Default | Description |
+|:------------- |:---- |:-------- |:--------|:----------- |
+| db | `string` | `true` | None | No description provided. |
+| coll | `string` | `true` | None | No description provided. |
+| query | `map` | `true` | None | No description provided. |
+| sort | `map` | `false` | None | No description provided. |
+| fields | `map` | `false` | None | No description provided. |
+| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |
+
+``` shell
+oms run findOne \ 
+    -a db='*****' \ 
+    -a coll='*****' \ 
+    -a query='*****' \ 
+    -a sort='*****' \ 
+    -a fields='*****' \ 
+    -e MONGODB_URI=$MONGODB_URI
 ```
 
-**Note**: the OMG CLI requires [Docker](https://docs.docker.com/install/) to be installed.
+##### insert
 
-## License
-[MIT License](https://github.com/omg-services/mongodb/blob/master/LICENSE).
+> 
+##### Action Arguments
+
+| Argument Name | Type | Required | Default | Description |
+|:------------- |:---- |:-------- |:--------|:----------- |
+| db | `string` | `true` | None | No description provided. |
+| coll | `string` | `true` | None | No description provided. |
+| doc | `map` | `true` | None | No description provided. |
+| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |
+
+``` shell
+oms run insert \ 
+    -a db='*****' \ 
+    -a coll='*****' \ 
+    -a doc='*****' \ 
+    -e MONGODB_URI=$MONGODB_URI
+```
+
+## Contributing
+
+All suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.
+
+[![Edit mongodb on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/mongodb)
+
+This project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).
+
+## Additional Resources
+
+* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.
+* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.
+* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.
+* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.
+* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.
